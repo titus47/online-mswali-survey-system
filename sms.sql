@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 05, 2018 at 04:21 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Host: 127.0.0.1:3306
+-- Generation Time: Aug 30, 2021 at 06:40 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,7 +27,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
   `email` varchar(50) NOT NULL,
   `password` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -36,7 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`email`, `password`) VALUES
-('mamoudkolawole@gmail.com', 'spoon');
+('wafulatitus31@gmail.com', 'kitale');
 
 -- --------------------------------------------------------
 
@@ -44,7 +46,8 @@ INSERT INTO `admin` (`email`, `password`) VALUES
 -- Table structure for table `answer`
 --
 
-CREATE TABLE `answer` (
+DROP TABLE IF EXISTS `answer`;
+CREATE TABLE IF NOT EXISTS `answer` (
   `qid` text NOT NULL,
   `ansid` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -55,7 +58,8 @@ CREATE TABLE `answer` (
 -- Table structure for table `history`
 --
 
-CREATE TABLE `history` (
+DROP TABLE IF EXISTS `history`;
+CREATE TABLE IF NOT EXISTS `history` (
   `email` varchar(50) NOT NULL,
   `eid` text NOT NULL,
   `score` int(11) NOT NULL,
@@ -78,7 +82,8 @@ INSERT INTO `history` (`email`, `eid`, `score`, `level`, `sahi`, `wrong`, `date`
 -- Table structure for table `options`
 --
 
-CREATE TABLE `options` (
+DROP TABLE IF EXISTS `options`;
+CREATE TABLE IF NOT EXISTS `options` (
   `qid` varchar(50) NOT NULL,
   `option` varchar(5000) NOT NULL,
   `optionid` text NOT NULL
@@ -148,14 +153,16 @@ INSERT INTO `options` (`qid`, `option`, `optionid`) VALUES
 -- Table structure for table `questions`
 --
 
-CREATE TABLE `questions` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `questions`;
+CREATE TABLE IF NOT EXISTS `questions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `eid` text NOT NULL,
   `qid` text NOT NULL,
   `qns` text NOT NULL,
   `choice` int(10) NOT NULL,
-  `sn` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `sn` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `questions`
@@ -174,7 +181,8 @@ INSERT INTO `questions` (`id`, `eid`, `qid`, `qns`, `choice`, `sn`) VALUES
 -- Table structure for table `rank`
 --
 
-CREATE TABLE `rank` (
+DROP TABLE IF EXISTS `rank`;
+CREATE TABLE IF NOT EXISTS `rank` (
   `email` varchar(50) NOT NULL,
   `score` int(11) NOT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -193,7 +201,8 @@ INSERT INTO `rank` (`email`, `score`, `time`) VALUES
 -- Table structure for table `survey`
 --
 
-CREATE TABLE `survey` (
+DROP TABLE IF EXISTS `survey`;
+CREATE TABLE IF NOT EXISTS `survey` (
   `eid` text NOT NULL,
   `title` varchar(100) NOT NULL,
   `sahi` int(11) NOT NULL,
@@ -220,13 +229,15 @@ INSERT INTO `survey` (`eid`, `title`, `sahi`, `wrong`, `total`, `time`, `intro`,
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(50) NOT NULL,
   `gender` varchar(5) NOT NULL,
   `college` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `mob` bigint(20) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -236,32 +247,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`name`, `gender`, `college`, `email`, `mob`, `password`) VALUES
 ('Kolawole Mamoud', 'M', 'LASU', 'mamoudkolawole@gmail.com', 9096830056, '4b8e23084e0f4d55a47102da363ef90c'),
 ('Sarah Wind', 'F', 'LASPOTECH', 'sarahlittlewind@gmail.com', 6318989954, '4b8e23084e0f4d55a47102da363ef90c');
+COMMIT;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `questions`
---
-ALTER TABLE `questions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `questions`
---
-ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
