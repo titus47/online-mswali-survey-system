@@ -73,7 +73,7 @@ echo '<span class="pull-right top title1" ><span class="log1"><span class="glyph
       <ul class="nav navbar-nav">
         <li <?php if(@$_GET['q']==0) echo'class="active"'; ?>><a href="dash.php?q=0">Home<span class="sr-only">(current)</span></a></li>
         <li <?php if(@$_GET['q']==1) echo'class="active"'; ?>><a href="dash.php?q=1">User</a></li>
-		<li <?php if(@$_GET['q']==2) echo'class="active"'; ?>><a href="dash.php?q=2">Ranking</a></li>
+		<li <?php if(@$_GET['q']==2) echo'class="active"'; ?>><a href="dash.php?q=2">Report</a></li>
         <li class="dropdown <?php if(@$_GET['q']==3 || @$_GET['q']==4) echo'active"'; ?>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Survey<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -264,7 +264,7 @@ echo '
 
 <!--add survey step2 start-->
 <?php
-if(@$_GET['q']==3 && (@$_GET['step'])==2 ) {
+if(@$_GET['q']==3 && !(@$_GET['step'])==2 ) {
 echo ' 
 <div class="row">
 <span class="title1" style="margin-left:40%;font-size:30px;"><b>Enter Question Details</b></span><br /><br />
@@ -272,7 +272,7 @@ echo '
 <fieldset>
 ';
  
- for($i=1;$i<=@$_GET['n'];$i++)
+ for($i=1;$i<=3;$i++)
  {
 echo '<b>Question number&nbsp;'.$i.'&nbsp;:</><br /><!-- Text input-->
 <div class="form-group">
@@ -322,6 +322,29 @@ echo '<b>Question number&nbsp;'.$i.'&nbsp;:</><br /><!-- Text input-->
   <option value="c">option c</option>
   <option value="d">option d</option> </select><br /><br />'; 
  }
+ echo '<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-12 control-label" for="name"></label>
+     <div class="col-md-12">
+     <input id="name" name="name" placeholder="Enter your name" class="form-control input-md" type="text">                           
+     </div>
+    </div>
+    <!-- Text input-->
+    <div class="form-group">
+    <label class="col-md-12 control-label title1" for="email"></label>
+    <div class="col-md-12">
+    <input id="email" name="email" placeholder="Enter your email-id" class="form-control input-md" type="email">
+                                  
+    </div>
+    </div>
+    <!-- Text input-->
+     <div class="form-group">
+      <label class="col-md-12 control-label" for="mob"></label>
+        <div class="col-md-12">
+          <input id="mob" name="mob" placeholder="Enter your mobile number" class="form-control input-md" type="number">
+                                  
+          </div>
+          </div>';
     
 echo '<div class="form-group">
   <label class="col-md-12 control-label" for=""></label>
@@ -329,8 +352,8 @@ echo '<div class="form-group">
     <input  type="submit" style="margin-left:45%" class="btn btn-primary" value="Submit" class="btn btn-primary"/>
   </div>
 </div>
-
 </fieldset>
+
 </form></div>';
 
 }
